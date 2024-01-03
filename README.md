@@ -10,5 +10,7 @@ The code includes:
 * Severity score prediction model
 * Utility functions, data split, training, and prediction 
 
-### Prerequisites
+## Prerequisites
 Required libreries have been listed in the code.
+For the installation of the segmentation model pre-trained on ImageNet, please refer to https://github.com/qubvel/segmentation_models.
+
