@@ -10,7 +10,9 @@ The code includes:
 * Severity score prediction model
 * Utility functions, data split, training, and prediction 
 
-## Prerequisites
-Required libreries have been listed in the code.
-For the installation of the segmentation model pre-trained on ImageNet, please refer to https://github.com/qubvel/segmentation_models.
+## Prerequisites and References
+* Required libreries have been listed in the code.
+* For the installation of the segmentation model pre-trained on ImageNet, please refer to https://github.com/qubvel/segmentation_models.
+* The public COVID-19 lesion segmentation dataset used for the transfer learning:
+**Degerli A, Ahishali M, Yamac M, Kiranyaz S, Chowdhury ME, Hameed K, et al. COVID-19 infection map generation and detection from chest X-ray images. Health information science and systems. 2021 Apr 1;9(1):15.
 
