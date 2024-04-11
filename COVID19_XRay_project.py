@@ -12,6 +12,7 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import segmentation_models
 from segmentation_models import Unet
+from segmentation_models.utils import set_trainable
 
 ### utility functions ########################################
 def dsc(y_true, y_pred):
@@ -75,7 +76,7 @@ def multiTaskModel(lr=0.0001, base_model = thorax_seg_model, gamma=0.1):
 
 MT_model = multiTaskModel()
 
-es = EarlyStopping(monitor='val_seg_output_dsc', mode='max', verbose=1, patience=10)
+es = EarlyStopping(monitor='val_seg_output_dsc', mode='max', verbose=1, patience=20)
 
 filepath ='./thorax_segmentation_weights.h5'
 
@@ -114,7 +115,7 @@ opt = tf.keras.optimizers.Adam(learning_rate=0.001, decay= 1e-6, beta_1=0.9, bet
 pretrained_lesion_seg_model1.compile(optimizer= opt , loss= 'binary_crossentropy', metrics=['accuracy', dsc])
 
 #
-es = EarlyStopping(monitor='val_dsc', mode='max', verbose=1, patience=40)
+es = EarlyStopping(monitor='val_dsc', mode='max', verbose=1, patience=20)
 
 filepath_inf_Seg_1 = './inf_Seg_1.h5'
 
@@ -130,10 +131,10 @@ callbacks_list = [checkpoint, es]
 batch_size = 1
 
 datagen = ImageDataGenerator(
-        rotation_range=2,
+        rotation_range=5,
         width_shift_range=0.05,
         height_shift_range=0.05,
-        shear_range=0.05,
+        shear_range=0.02,
         zoom_range=0.05,
         fill_mode='nearest')
 
@@ -161,9 +162,12 @@ pretrained_lesion_seg_model2 = segmentation_models.Unet(backbone_name='inception
 
 pretrained_lesion_seg_model2.load_weights(filepath_inf_Seg_1)
 
+# the network structure is the same as the thorax segmentation network
 MT_pretrained_lesion_seg_model =multiTaskModel(base_model=pretrained_lesion_seg_model2)
 
-es = EarlyStopping(monitor='val_seg_output_dsc', mode='max', verbose=1, patience=10)
+MT_pretrained_lesion_seg_model.encoder_freeze()
+
+es = EarlyStopping(monitor='val_seg_output_dsc', mode='max', verbose=1, patience=5)
 
 filepath_inf_seg_2 = './inf_seg_2.h5'
 
@@ -177,7 +181,7 @@ callbacks_list = [checkpoint, es]
 
 batch_size = 1
 
-epochs = 200
+epochs = 15
 
 steps = int(X_train.shape[0]/ batch_size)
 
@@ -187,12 +191,15 @@ history3 = MT_pretrained_lesion_seg_model.fit(X_train, [Y_train, X_train[...,:1]
                                    callbacks=callbacks_list,
                                    verbose=2)
 
-###### Diagnosis model ######################################
+###### Diagnosis module ######################################
 def diagnosis(lr=0.0001, base_model = MT_pretrained_lesion_seg_model):
 
     model = Model(inputs=base_model.inputs, outputs=[base_model.get_layer('conv_7b_ac').output])
-    x = tf.keras.layers.GlobalMaxPooling2D()(model.layers[-1].output)
-
+    x = tf.keras.layers.GlobalAveragePooling2D()(model.layers[-1].output)
+    x = Dense(256)(x)
+    x = BatchNormalization()(x)
+    x = Activation('relu')(x)
+    x = Dropout(0.2)(x)
     output = Dense(1, activation='sigmoid')(x)
     # define new model
     model = Model(inputs=model.inputs, outputs=output)
@@ -210,7 +217,7 @@ def diagnosis(lr=0.0001, base_model = MT_pretrained_lesion_seg_model):
 diagnosis_model = diagnosis()
 
 #
-es = EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, patience=12)
+es = EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, patience=20)
 
 filepath_diagnosis = 'diagnosis.h5'
 
@@ -226,10 +233,11 @@ callbacks_list = [checkpoint, es]
 batch_size = 4
 
 datagen = ImageDataGenerator(
-        rotation_range=3,
-        width_shift_range=0.02,
-        height_shift_range=0.02,
-        zoom_range=0.02,
+       rotation_range=5,
+        width_shift_range=0.05,
+        height_shift_range=0.05,
+        shear_range=0.02,
+        zoom_range=0.05,
         fill_mode='nearest')
 
 data_gen = datagen.flow(X_train, Y_train, batch_size=batch_size)
@@ -245,11 +253,11 @@ history4 = diagnosis_model.fit_generator(data_gen, epochs=epochs,
                     callbacks=callbacks_list,
                     verbose=2)
 
-######### Sevrity score prediction model ###################################################
+######### Sevrity score prediction module ###################################################
 def Severity_predictor(lr=0.0001, base_model = MT_pretrained_lesion_seg_model):
 
     model = Model(inputs=base_model.inputs, outputs=[base_model.get_layer('conv_7b_ac').output])
-    x = tf.keras.layers.GlobalMaxPooling2D()(model.layers[-1].output)
+    x = tf.keras.layers.GlobalAveragePooling2D()(model.layers[-1].output)
 
     output = Dense(1, activation='linear')(x)
     # define new model
@@ -282,17 +290,18 @@ callbacks_list = [checkpoint, es]
 
 batch_size = 4
 
-datagen = ImageDataGenerator(width_shift_range=0.05,
-                             height_shift_range=0.05,
-                             shear_range=0.02,
-                             zoom_range=0.05,
-                             fill_mode='nearest')
+datagen = ImageDataGenerator( rotation_range=5,
+        width_shift_range=0.05,
+        height_shift_range=0.05,
+        shear_range=0.02,
+        zoom_range=0.05,
+        fill_mode='nearest')
 
 data_gen = datagen.flow(X_train, Y_train, batch_size=batch_size)
 
 #
-epochs = 300
-batch_size=4
+epochs = 200
+
 steps = int(X_train.shape[0] / batch_size)
 
 history5 = Severity_model.fit_generator(data_gen, epochs=epochs,
@@ -331,75 +340,11 @@ tst_indx = np.load('./tst_indx' + str(fold_var) + '.npy')
 tr_indx = tr_indx[0,:]
 tst_indx = tst_indx[0,:]
 
-l1 = int(len(tr_indx) * 0.87)
+l1 = int(len(tr_indx) * 0.875)
 
 X_tr, X_val, X_tst = x[tr_indx[:l1]], x[tr_indx[l1:]], x[tst_indx]
 Y_tr, Y_val, Y_tst = y[tr_indx[:l1]], y[tr_indx[l1:]], y[tst_indx]
 
-# predictions: 2 step classificartion
 
-X_tst = x[tst_indx]
-
-Y_tst = y[tst_indx]
-Y_tst012 = np.where(Y_tst==2,1,Y_tst)
-
-batch_size = 4
-y_d012= diagnosis_model1.predict(X_tst, batch_size=batch_size)
-
-thr1 = 0.55
-
-pred012 = np.where(y_d012>thr1, 1, 0)
-
-XL1 = []
-YL1 = []
-XL0 = []
-YL0 = []
-for i in range(len(X_tst)):
-    if pred012[i]==1:
-        XL1.append(X_tst[i, ...])
-        YL1.append(Y_tst[i])
-    elif pred012[i]==0:
-        XL0.append(X_tst[i, ...])
-        YL0.append(Y_tst[i])
-
-XL1 = np.array(XL1)
-YL1 = np.array(YL1)
-
-XL0 = np.array(XL0)
-YL0 = np.array(YL0)
-
-y_d12 = diagnosis_model2.predict(XL1, batch_size=batch_size)
-
-thr2 = 0.4
-
-predL1 = np.where(y_d12>thr2,1,0)
-
-X_gt = np.concatenate((XL0, XL1), axis=0)
-Y_gt = np.concatenate((YL0, YL1), axis=0)
-y_pred = np.concatenate((np.zeros(len(YL0)), predL1[:,0] + 1), axis=0)
-
-acc = accuracy_score(Y_gt, y_pred)
-print('Accuracy:', acc)
-f1012 = f1_score(Y_gt, y_pred)
-print('f1_score:', f1012)
-rec = recall_score(Y_gt, y_pred, average=None)
-print('Recall:', rec)
-prec = precision_score(Y_gt, y_pred, average=None)
-print('Precision:', prec)
-confusion_matrix(Y_gt, y_pred)
-
-# predictions: Severity score
-batch_size = 4
-
-y_pred = Severity_model.predict(X_tst, batch_size=batch_size)
-
-
-print(mean_absolute_error(y_pred[:,0] , Y_tst))
-
-tst = (np.absolute(y_pred[:,0] - Y_tst))
-print(tst.std())
-
-corr, _ = pearsonr(y_pred[:,0], Y_tst)
-print('Pearsons correlation: %.3f' % corr)
 
 
