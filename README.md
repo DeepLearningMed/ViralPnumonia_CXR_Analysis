@@ -8,7 +8,19 @@ The code includes:
   * Pre-training on an in-house COVID-19 lesion sementation dataset
 * Diagnosis model
 * Severity score prediction model
-* Utility functions, data split, training, and prediction 
+* Utility functions, data split, and training
+
+## Severity scores of  86 COVID-19 CXRs evaluated by one of our radiologists
+* Scoring Method Description: The scoring method, as explained in detail in the manuscript, involves:
+    *  Evaluation of four lung quadrants based on the extent of involvement and the density of opacifications.
+    *  Calculation of the total severity score for the CXR by summing the quadrants' scores.
+* Scoring Table Description: The scoring table includes the following columns:
+    *  ID: CXR ID extracted from the original file names.
+    *  RULZ: Right Upper Lung Zone
+    *  RLLZ: Right Lower Lung Zone
+    *  LULZ: Left Upper Lung Zone
+    *  LLLZ: Left Lower Lung Zone
+    *  Total: Total severity score of CXRs
 
 ## Prerequisites and References
 * Required libreries have been listed in the code.
