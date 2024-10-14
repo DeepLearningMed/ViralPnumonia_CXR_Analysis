@@ -330,17 +330,3 @@ for train_index, test_index in skf.split(x, y):
     np.save('./tst_indx' + str(fold_var) + '.npy', tst_indx_cls)
  
     fold_var = fold_var + 1
- 
-fold_var = 1
- 
-tr_indx = np.load('./tr_indx' + str(fold_var) + '.npy')
-tst_indx = np.load('./tst_indx' + str(fold_var) + '.npy')
- 
-tr_indx = tr_indx[0,:]
-tst_indx = tst_indx[0,:]
- 
-l1 = int(len(tr_indx) * 0.875)
- 
-X_tr, X_val, X_tst = x[tr_indx[:l1]], x[tr_indx[l1:]], x[tst_indx]
-Y_tr, Y_val, Y_tst = y[tr_indx[:l1]], y[tr_indx[l1:]], y[tst_indx]
-
