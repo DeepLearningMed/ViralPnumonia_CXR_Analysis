@@ -1,5 +1,13 @@
-# ViralPneumonia_CXR_Analysis
-This repository hosts the code for a comprehensive deep learning-based analysis of chest X-rays (CXR) for detecting COVID-19 baseline CXRs from other viral pneumonia and normal cases, and predicting the severity score of COVID-19 CXRs.
+# Differentiation of COVID-19 from other types of viral pneumonia and severity scoring on baseline chest radiographs: comparison of deep learning with multi-reader evaluation 
+This repository hosts the code for a comprehensive deep learning-based analysis of chest X-rays (CXR) for detecting COVID-19 baseline CXRs from other viral pneumonia and normal cases, and predicting the severity score of COVID-19 CXRs. 
+### Codes/material supporting the manuscript titled "Differentiation of COVID-19 from other types of viral pneumonia and severity scoring on baseline chest radiographs: comparison of deep learning with multi-reader evaluation", Revisions submitted to PLOS ONE, April 2025.
+Authors: Nastaran Enshaei1, Arash Mohammadi1, Farnoosh Naderkhani1, Nick Daneman2, Rawan Abu Mughli3, Reut Anconina3, Ferco H. Berger3, Robert Andrew Kozak4, Samira Mubareka5, Ana Maria Villanueva Campos3, Keshav Narang3, Thayalasuthan Vivekanandan3, Adrienne Kit Chan2, Philip Lam2, Nisha Andany2, Anastasia Oikonomou3*
+1	Concordia Institute for Information Systems Engineering, Concordia University, Montreal, QC, Canada
+2	Division of Infectious Diseases, Department of Medicine, Sunnybrook Health Sciences Centre, University of Toronto
+3	Department of Medical Imaging, Sunnybrook Health Sciences Centre, University of Toronto
+4	Biological Sciences Platform, Sunnybrook Research Institute and Shared Hospital Laboratory
+5	Department of Microbiology, Sunnybrook Health Sciences Centre, University of Toronto
+
 ## Main parts
 The code includes:
 * A multi-task learning model for segmenting thorax regions from CXRs.
