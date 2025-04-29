@@ -17,6 +17,8 @@ The code includes:
 * Diagnosis model
 * Severity score prediction model
 * Utility functions, data split, and training
+* DLSystemPipeline.py is used to build the network architecture and load the pre-trained weights.
+* A download link for the trained model weights will be added here shortl. 
 
 ## Severity scores of  86 COVID-19 CXRs evaluated by one of our radiologists (Will be available with the manuscript)
 * Scoring Method Description: The scoring method, as explained in detail in the manuscript, involves:
