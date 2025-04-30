@@ -20,6 +20,14 @@ The code includes:
 * DLSystemPipeline.py is used to build the network architecture and load the pre-trained weights.
 * A download link for the trained model weights will be added here shortl. 
 
+## 🔗 Access Trained Models
+
+The trained model weights used in this project are publicly available on Figshare:
+
+📁 **Download Classfication Models**: [https://doi.org/10.6084/m9.figshare.28892216](https://doi.org/10.6084/m9.figshare.28892216)
+
+These models are provided for **research and reproducibility purposes**.  
+
 ## Severity scores of  86 COVID-19 CXRs evaluated by one of our radiologists available in RadilologistEvaluatedSeverityScores.xlsx
 * Scoring Method Description: The scoring method, as explained in detail in the manuscript, involves:
     *  Evaluation of four lung quadrants based on the extent of involvement and the density of opacifications.
