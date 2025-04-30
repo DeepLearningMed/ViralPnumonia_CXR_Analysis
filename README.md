@@ -22,7 +22,7 @@ The code includes:
 
 ## 🔗 Access Trained Models
 
-The trained model weights used in this project are publicly available on Figshare:
+The trained models developed in this project are publicly available on Figshare:
 
 📁 **Download Classfication Models**: [https://doi.org/10.6084/m9.figshare.28892216](https://doi.org/10.6084/m9.figshare.28892216)
 
