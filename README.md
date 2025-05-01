@@ -24,7 +24,9 @@ The code includes:
 
 The trained models developed in this project are publicly available on Figshare:
 
-📁 **Download Classfication Models**: [https://doi.org/10.6084/m9.figshare.28892216](https://doi.org/10.6084/m9.figshare.28892216)
+📁 [**Download Classification Models**](https://doi.org/10.6084/m9.figshare.28892216)
+
+📁 [**Download Thorax Segmentation Model**](https://liveconcordia-my.sharepoint.com/:f:/g/personal/n_enshae_live_concordia_ca/Ep9fAZ0hDzJMgvNqXBsIbXkBTWQ7EjvczA7X16Gl68AGnw?e=DIBIzp)
 
 These models are provided for **research and reproducibility purposes**.  
 
