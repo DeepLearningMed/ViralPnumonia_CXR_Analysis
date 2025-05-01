@@ -8,17 +8,19 @@ This repository hosts the code for a comprehensive deep learning-based analysis 
 * 4	Biological Sciences Platform, Sunnybrook Research Institute and Shared Hospital Laboratory
 * 5	Department of Microbiology, Sunnybrook Health Sciences Centre, University of Toronto
 
-## Main parts
-The code includes:
-* A multi-task learning model for segmenting thorax regions from CXRs.
-* Transfer learning using COVID-19 lesion masks: 
-  * Pre-training on a public COVID-19 lesion sementation dataset
-  * Pre-training on an in-house COVID-19 lesion sementation dataset
-* Diagnosis model
-* Severity score prediction model
-* Utility functions, data split, and training
-* DLSystemPipeline.py is used to build the network architecture and load the pre-trained weights.
-* A download link for the trained model weights will be added here shortl. 
+## Code
+
+The `DLSystemPipeline.py` script is used to:
+- Load and preprocess the data  
+- Build the network architecture or load trained models  
+- Perform predictions and evaluate the results  
+
+The `code_CXR_Analysis.py` script contains the training and development pipeline, including:
+- A multi-task learning model for thorax region segmentation on chest X-rays (CXRs)  
+- Transfer learning using COVID-19 lesion masks:  
+  - Pre-training on a public COVID-19 lesion segmentation dataset  
+  - Pre-training on an in-house COVID-19 lesion segmentation dataset  
+- Utility functions for data splitting and model training
 
 ## 🔗 Access Trained Models
 
