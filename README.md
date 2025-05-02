@@ -34,7 +34,23 @@ The trained models developed as part of this project are available for public do
 
 These models are provided for **research and reproducibility purposes**.  
 
-## Severity scores of  86 COVID-19 CXRs evaluated by one of our radiologists available in RadilologistEvaluatedSeverityScores.xlsx
+## External Validation of Diagnosis Module
+
+- The external dataset used for the **first-step classification** is the publicly available **COVIDGR** dataset introduced by:
+
+  > Tabik, S., et al., 2020. COVIDGR dataset and COVID-SDNet methodology for predicting COVID-19 based on chest X-ray images. *IEEE Journal of Biomedical and Health Informatics*, 24(12), pp.3595–3605.
+
+- The dataset used for the **validation of the full diagnosis pipeline** is a **subset** of a public dataset introduced by the following works.  
+  To see the exact subset used in our validation, please refer to `ExternalValidationData_Classification.csv`.
+
+  > Chowdhury, M.E.H., Rahman, T., Khandakar, A., Mazhar, R., Kadir, M.A., Mahbub, Z.B., Islam, K.R., Khan, M.S., Iqbal, A., Al-Emadi, N., Reaz, M.B.I., and Islam, M.T., 2020. *Can AI help in screening viral and COVID-19 pneumonia?* *IEEE Access*, 8, pp.132665–132676.
+
+  > Rahman, T., Khandakar, A., Qiblawey, Y., Tahir, A., Kiranyaz, S., Kashem, S.B.A., Islam, M.T., Maadeed, S.A., Zughaier, S.M., Khan, M.S., and Chowdhury, M.E., 2020. *Exploring the effect of image enhancement techniques on COVID-19 detection using chest X-ray images*. *arXiv preprint* arXiv:2012.02238.
+
+## External Validation of Severity Scoring Module
+* The COVID-19 CXRs used for the external validation of the severity scoring module are a subset of a public dataset intorduced by:
+  * Wang, L., Lin, Z.Q. and Wong, A., 2020. Covid-net: A tailored deep convolutional neural network design for detection of covid-19 cases from chest x-ray images. Scientific reports, 10(1), p.19549.
+* Severity scores of  these 86 COVID-19 CXRs evaluated by one of our radiologists available in RadilologistEvaluatedSeverityScores.xlsx
 * Scoring Method Description: The scoring method, as explained in detail in the manuscript, involves:
     *  Evaluation of four lung quadrants based on the extent of involvement and the density of opacifications.
     *  Calculation of the total severity score for the CXR by summing the quadrants' scores.
