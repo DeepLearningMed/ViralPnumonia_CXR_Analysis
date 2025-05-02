@@ -24,11 +24,13 @@ The `code_CXR_Analysis.py` script contains the training and development pipeline
 
 ## 🔗 Access Trained Models
 
-The trained models developed in this project are publicly available on Figshare:
+The trained models developed as part of this project are available for public download:
+
+📁 [**Download Thorax Segmentation Model**](https://liveconcordia-my.sharepoint.com/:f:/g/personal/n_enshae_live_concordia_ca/Ep9fAZ0hDzJMgvNqXBsIbXkBTWQ7EjvczA7X16Gl68AGnw?e=DIBIzp)
 
 📁 [**Download Classification Models**](https://doi.org/10.6084/m9.figshare.28892216)
 
-📁 [**Download Thorax Segmentation Model**](https://liveconcordia-my.sharepoint.com/:f:/g/personal/n_enshae_live_concordia_ca/Ep9fAZ0hDzJMgvNqXBsIbXkBTWQ7EjvczA7X16Gl68AGnw?e=DIBIzp)
+📁 [**Download Severity Scoring Model**](https://liveconcordia-my.sharepoint.com/:f:/g/personal/n_enshae_live_concordia_ca/Ep9fAZ0hDzJMgvNqXBsIbXkBTWQ7EjvczA7X16Gl68AGnw?e=DIBIzp)
 
 These models are provided for **research and reproducibility purposes**.  
 
