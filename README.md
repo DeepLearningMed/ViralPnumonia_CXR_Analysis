@@ -67,5 +67,3 @@ These models are provided for **research and reproducibility purposes**.
 * For the installation of the segmentation model pre-trained on ImageNet, please refer to https://github.com/qubvel/segmentation_models.
 * The public COVID-19 lesion segmentation dataset used for the transfer learning:
   * Degerli A, Ahishali M, Yamac M, Kiranyaz S, Chowdhury ME, Hameed K, et al. COVID-19 infection map generation and detection from chest X-ray images. Health information science and systems. 2021 Apr 1;9(1):15.
-* The COVID-19 external CXRs evaluated by one are radilogists are a subset of a public dataset intorduced by:
-  * Wang, L., Lin, Z.Q. and Wong, A., 2020. Covid-net: A tailored deep convolutional neural network design for detection of covid-19 cases from chest x-ray images. Scientific reports, 10(1), p.19549.
