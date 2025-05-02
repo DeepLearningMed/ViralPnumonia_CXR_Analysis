@@ -34,7 +34,7 @@ The trained models developed as part of this project are available for public do
 
 These models are provided for **research and reproducibility purposes**.  
 
-## External Validation of Diagnosis Module
+## External Validation of the Diagnostic Module
 
 - The external dataset used for the **first-step classification** is the publicly available **COVIDGR** dataset introduced by:
 
@@ -47,7 +47,7 @@ These models are provided for **research and reproducibility purposes**.
 
   > Rahman, T., Khandakar, A., Qiblawey, Y., Tahir, A., Kiranyaz, S., Kashem, S.B.A., Islam, M.T., Maadeed, S.A., Zughaier, S.M., Khan, M.S., and Chowdhury, M.E., 2020. *Exploring the effect of image enhancement techniques on COVID-19 detection using chest X-ray images*. *arXiv preprint* arXiv:2012.02238.
 
-## External Validation of Severity Scoring Module
+## External Validation of the Severity Scoring Module
 * The COVID-19 CXRs used for the external validation of the severity scoring module are a subset of a public dataset intorduced by:
   * Wang, L., Lin, Z.Q. and Wong, A., 2020. Covid-net: A tailored deep convolutional neural network design for detection of covid-19 cases from chest x-ray images. Scientific reports, 10(1), p.19549.
 * Severity scores of  these 86 COVID-19 CXRs evaluated by one of our radiologists available in RadilologistEvaluatedSeverityScores.xlsx
