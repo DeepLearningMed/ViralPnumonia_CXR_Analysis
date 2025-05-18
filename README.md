@@ -34,6 +34,10 @@ The trained models developed as part of this project are available for public do
 
 These models are provided for **research and reproducibility purposes**.  
 
+## Eternal Validation of the Thorax Segmentation Module
+
+📁 [**The predicted thorax masks and overlaied images (masks and original CXR) on a public dataset (COVIDGR)**](https://liveconcordia-my.sharepoint.com/:f:/g/personal/n_enshae_live_concordia_ca/Eg-9t0qbk3tKvAYKpgwhqA8BKp_MGla2pnPU2Mh_CuSm6w?e=dNTYZQ)
+
 ## External Validation of the Diagnostic Module
 
 - The external dataset used for the **first-step classification** is the publicly available **COVIDGR** dataset introduced by:
